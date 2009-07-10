@@ -1,0 +1,73 @@
+Thank you for having interest in xmpp4log.
+
+What:
+#####
+
+A simple Logger class which output is XMPP.
+
+Who:
+####
+
+Geek.describe do
+	nick  = 'frihd'
+	first = 'lucas'
+	last  = 'dicioccio'
+	web   = 'http://' + last + '.fr'
+	email = first + last + '@' + nick + '.net'
+end
+
+
+Why:
+####
+
+I needed to get updates on my phone of some log info. Having a Logger class is handy because many libraries allow you to pass such an object.
+
+Tested on:
+##########
+
+Ruby 1.8
+Linux 2.6.28
+
+Requirements:
+#############
+
+Ruby IO.pipe must be available on your platform
+xmpp4r		 http://home.gna.org/xmpp4r/
+xmpp4r-simple    http://rubyforge.org/projects/xmpp4r-simple
+
+Usage in script:
+################
+
+require 'rubygems'
+require './lib/xmpp4log'
+
+log = XMPPLogger.new( 'login@host',    #jid
+	 'pass',                       #password
+	 ['bla@foo.xy', 'foo@bla.yx']  #array of users to receive the log
+)
+
+
+log.level = Logger::ERROR
+log.error "Bonjour"
+log.debug "Message invisible"
+log.level = Logger::DEBUG
+log.debug "Message visible"
+
+sleep 5
+
+
+Usage from distant:
+###################
+
+all the users that can send message to the Logger account can:
+- set the debug level with  :     debug  info warn error fatal
+- (de-)mute completely with :     mute demute
+
+
+Warning:
+########
+
+- was done quick n dirty
+- not heavily maintained
+- no handling of stupid errors if xmpp server crashed
+- strangely threaded
