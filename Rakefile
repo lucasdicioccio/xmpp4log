@@ -14,6 +14,7 @@ spec = Gem::Specification.new do |s|
 
         s.files = ['README', 'LICENSE', 'gpl-3.0.txt', 'Rakefile', 'TODO', 'lib/xmpp4log.rb']
 
+	s.add_dependency('xmpp4r-simple', '>= 0.8.8')
         s.require_path = 'lib'
 
         s.has_rdoc = false
